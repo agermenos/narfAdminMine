@@ -39,6 +39,13 @@ public class ImageFileDao  extends GeneralDao<ImageFileEntity>{
     public ImageFileEntity findByKey(ImageFileKey key){
         return sessionFactory.getCurrentSession().get(ImageFileEntity.class, key);
     }
+
+    @Transactional
+    public List<ImageFileEntity>findByImageTypeId(int imageTypeId){
+        Criteria cr = sessionFactory.getCurrentSession().createCriteria(ImageFileEntity.class);
+        cr.add(Restrictions.eq("imageFileKey.image_type_id", imageTypeId));
+        return cr.list();
+    }
     @Transactional
     public List<ImageFileEntity> findAboveKey(int imageId){
         Query q=sessionFactory.getCurrentSession().createQuery("FROM ImageFileEntity WHERE imageFileKey.image_id>:id");
