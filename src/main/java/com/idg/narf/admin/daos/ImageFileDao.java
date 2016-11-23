@@ -1,5 +1,6 @@
 package com.idg.narf.admin.daos;
 
+import com.idg.narf.admin.pojos.ImageEntity;
 import com.idg.narf.admin.pojos.ImageFileEntity;
 import com.idg.narf.admin.pojos.ImageFileKey;
 import org.hibernate.Criteria;
@@ -46,10 +47,29 @@ public class ImageFileDao  extends GeneralDao<ImageFileEntity>{
         cr.add(Restrictions.eq("imageFileKey.image_type_id", imageTypeId));
         return cr.list();
     }
+
+    @Transactional
+    public List<ImageFileEntity>findByImageId(int imageId){
+        Criteria cr = sessionFactory.getCurrentSession().createCriteria(ImageFileEntity.class);
+        cr.add(Restrictions.eq("imageFileKey.image_id", imageId));
+        return cr.list();
+    }
+
+    @Transactional
+    public List<ImageFileEntity>findMediaResourceImageFiles(){
+        Query q=sessionFactory.getCurrentSession().createQuery("FROM ImageFileEntity WHERE imageFileKey.image_id IN (SELECT imageId FROM MediaResourceEntity )");
+        return q.list();
+    }
+
     @Transactional
     public List<ImageFileEntity> findAboveKey(int imageId){
         Query q=sessionFactory.getCurrentSession().createQuery("FROM ImageFileEntity WHERE imageFileKey.image_id>:id");
-        q.setParameter("id",100635664);
+        q.setParameter("id",imageId);
         return q.list();
+    }
+
+    @Transactional
+    public List<ImageFileEntity> getAll() {
+        return sessionFactory.getCurrentSession().createCriteria(ImageFileEntity.class).list();
     }
 }

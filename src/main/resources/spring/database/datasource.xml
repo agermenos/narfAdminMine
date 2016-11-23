@@ -6,11 +6,11 @@
     <bean id="dataSource"
           class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.postgresql.Driver" />
-        <!-- <property name="url" value="jdbc:postgresql://localhost:5432/narf" />
+        <property name="url" value="jdbc:postgresql://localhost:5432/narf" />
         <property name="username" value="narf_admin" />
-        <property name="password" value="password" />-->
-        <property name="url" value="jdbc:postgresql://dev-pgdb-sf-02.idgesg.net:5432/narf" />
+        <property name="password" value="password" />
+        <!--<property name="url" value="jdbc:postgresql://dev-pgdb-fram-01.idgesg.net:5432/narf" />
         <property name="username" value="narf_admin" />
-        <property name="password" value="Adm1nDr1nksC0ke" />
+        <property name="password" value="Adm1nDr1nksC0ke" />-->
     </bean>
 </beans>

@@ -2,6 +2,7 @@ package com.idg.narf.admin.pojos;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by agermenos on 10/12/16.
@@ -22,6 +23,7 @@ public class ImageEntity {
     private Boolean isSingleUse;
     private Integer usage;
     private String creditUrl;
+    private List<ImageFileEntity> imageFiles;
 
     @Id
     @Column(name = "id", nullable = false)
